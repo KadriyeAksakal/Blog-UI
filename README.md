@@ -39,4 +39,11 @@ quasar build
 
 ### Customize the configuration
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
+# TR
+Projede bannerlarda kullandığım medyalar için kaynak ; https://www.pexels.com \
+Medyaların boyutlarını düşürmek için kullandığım kaynak ; https://compressjpeg.com
+
+# EN
+The source for the media I used in banners in the project ; https://www.pexels.com \
+The source I use to reduce the size of the media ; https://compressjpeg.com
 # Blog-UI
