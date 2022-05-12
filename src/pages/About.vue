@@ -7,9 +7,16 @@
       desc="Kısa hayatımın kısa bir özeti.."
       img-class="img-left"
     />
-    <q-page class="flex flex-center">
-
-    </q-page>
+      <section class="about">
+        <div class="container">
+          <div v-for="about in aboutList" :key="about.id">
+            <h5>{{ about.attributes.title }}</h5>
+            <div>
+              {{ about.attributes.aboutMe}}
+            </div>
+          </div>
+        </div>
+      </section>
   </div>
 </template>
 
@@ -18,7 +25,7 @@ import Header from 'components/Header/Header'
 
 export default {
   name: 'PageAbout',
-  components: { Header },
+  components: {Header},
   meta: {
     title: 'Kadriye Aksakal Hakkında',
     meta: {
@@ -29,6 +36,27 @@ export default {
       viewport: {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1'
+      }
+    }
+  },
+  data() {
+    return {
+      aboutList: [],
+      error: null
+    }
+  },
+  mounted() {
+    this.getAbout()
+  },
+  methods: {
+    async getAbout() {
+      this.aboutList = []
+      try {
+        const response = await this.$axios.get('http://localhost:1337/api/abouts')
+        this.aboutList = response.data.data
+        console.log(this.aboutList)
+      } catch (error) {
+        this.error = error
       }
     }
   }
