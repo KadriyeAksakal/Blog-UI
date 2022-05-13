@@ -1,22 +1,22 @@
 <template>
-  <div>
+  <div v-for="contact in contactInfo" :key="contact.id">
     <Header
       headerClass="banner-bg"
       textClass="title-xl text-left"
-      title="İletişim"
-      desc="Soru görüş ve önerileriniz için benimle iletişime geçin.."
+      :title="contact.attributes.bannerTitle"
+      :desc="contact.attributes.bannerDesc"
       img-class="img-left"
     />
       <section class="contact-content detail">
         <div class="container">
-          <h3 class="general--title small row justify-center">İletişim Adreslerim</h3>
+          <h3 class="general--title small row justify-center">{{contact.attributes.contentTitle}}</h3>
           <div class="row q-col-gutter-lg justify-center" >
-            <div class="col-sm-3" v-for="contact in contactList" :key="contact.id">
+            <div class="col-sm-3" v-for="contactContent in contactList" :key="contactContent.id">
               <div class="contact-content  detail-card">
-                <q-icon size="70px" font-size="70px" :name="contact.attributes.iconName" class="icon"/>
+                <q-icon size="70px" font-size="70px" :name="contactContent.attributes.iconName" class="icon"/>
                 <div class="info">
-                  <label>{{contact.attributes.socialMediaName}}</label>
-                  <span>{{contact.attributes.socialMediaAddress}}</span>
+                  <label>{{contactContent.attributes.socialMediaName}}</label>
+                  <span>{{contactContent.attributes.socialMediaAddress}}</span>
                 </div>
               </div>
             </div>
@@ -48,19 +48,31 @@ export default {
   data() {
     return {
       contactList: [],
+      contactInfo: [],
       error: null
     }
   },
   mounted() {
-    this.getAbout()
+    this.getContactList()
+    this.getContactInfo()
   },
   methods: {
-    async getAbout() {
+    async getContactList() {
       this.contactList = []
       try {
-        const response = await this.$axios.get('http://localhost:1337/api/contacts')
+        const response = await this.$axios.get('http://localhost:1337/api/contact-contents')
         this.contactList = response.data.data
-        console.log(this.contactList)
+        console.log(response.data.data)
+      } catch (error) {
+        this.error = error
+      }
+    },
+    async getContactInfo() {
+      this.contactInfo = []
+      try {
+        const response = await this.$axios.get('http://localhost:1337/api/contacts')
+        this.contactInfo = response.data.data
+        console.log(response.data.data)
       } catch (error) {
         this.error = error
       }
