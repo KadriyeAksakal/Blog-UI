@@ -10,13 +10,13 @@
       <section class="contact-content detail">
         <div class="container">
           <h3 class="general--title small row justify-center">{{contact.attributes.contentTitle}}</h3>
-          <div class="row q-col-gutter-lg justify-center" >
-            <div class="col-sm-3" v-for="contactContent in contactList" :key="contactContent.id">
+          <div class="row q-col-gutter-lg justify-center">
+            <div class="col-sm-3" v-for="content in contact.attributes.content" :key="content.id">
               <div class="contact-content  detail-card">
-                <q-icon size="70px" font-size="70px" :name="contactContent.attributes.iconName" class="icon"/>
+                <q-icon size="70px" font-size="70px" :name="content.iconName" class="icon"/>
                 <div class="info">
-                  <label>{{contactContent.attributes.socialMediaName}}</label>
-                  <span>{{contactContent.attributes.socialMediaAddress}}</span>
+                  <label>{{content.socialMediaName}}</label>
+                  <span>{{content.socialMediaAddress}}</span>
                 </div>
               </div>
             </div>
@@ -47,30 +47,18 @@ export default {
   },
   data() {
     return {
-      contactList: [],
       contactInfo: [],
       error: null
     }
   },
   mounted() {
-    this.getContactList()
     this.getContactInfo()
   },
   methods: {
-    async getContactList() {
-      this.contactList = []
-      try {
-        const response = await this.$axios.get('http://localhost:1337/api/contact-contents')
-        this.contactList = response.data.data
-        console.log(response.data.data)
-      } catch (error) {
-        this.error = error
-      }
-    },
     async getContactInfo() {
       this.contactInfo = []
       try {
-        const response = await this.$axios.get('http://localhost:1337/api/contacts')
+        const response = await this.$axios.get('http://localhost:1337/api/contacts?populate=*')
         this.contactInfo = response.data.data
         // console.log(response.data.data)
       } catch (error) {
