@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div v-for="about in aboutList" :key="about.id">
     <Header
       headerClass="banner-bg"
       textClass="title-xl text-left"
-      title="Hakkımda"
-      desc="Kısa hayatımın kısa bir özeti.."
+      :title="about.attributes.bannerTitle"
+      :desc="about.attributes.bannerDesc"
       img-class="img-left"
     />
       <section class="about">
         <div class="container">
-          <div v-for="about in aboutList" :key="about.id">
+          <div>
             <h5>{{ about.attributes.title }}</h5>
             <div>
               {{ about.attributes.aboutMe}}
