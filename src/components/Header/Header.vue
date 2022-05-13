@@ -3,24 +3,9 @@
     <section class="navigation-container" :class="{change_color: scrollPosition > 50}">
       <div class="container">
         <div class="navigation">
-          <ul>
+          <ul v-for="menu in menuList" :key="menu.id">
             <li>
-              <router-link to="/">Ana Sayfa</router-link>
-            </li>
-            <li>
-              <router-link to="/about">Hakkında</router-link>
-            </li>
-            <li>
-              <router-link to="/projects">Projeler</router-link>
-            </li>
-            <li>
-              <router-link to="/writings">Yazılar</router-link>
-            </li>
-            <li>
-              <router-link to="/experiences">Deneyimler</router-link>
-            </li>
-            <li>
-              <router-link to="/contact">İletişim</router-link>
+              <router-link :to="menu.attributes.menuItemPath">{{menu.attributes.menuItem}}</router-link>
             </li>
           </ul>
           <div class="mobile-menu">
@@ -28,13 +13,8 @@
             <span></span>
             <span></span>
             <div class="mobile-menu-list">
-              <ul>
-                <li><a href="/">Ana Sayfa</a></li>
-                <li><a href="/about">Hakkında</a></li>
-                <li><a href="/projects">Projeler</a></li>
-                <li><a href="/writings">Yazılar</a></li>
-                <li><a href="/experiences">Deneyimler</a></li>
-                <li><a href="/contact">İletişim</a></li>
+              <ul v-for="menu in menuList" :key="menu.id">
+                <li><a :href="menu.attributes.menuItemPath">{{menu.attributes.menuItem}}</a></li>
               </ul>
             </div>
           </div>
@@ -52,9 +32,26 @@ export default {
   props: ['img', 'imgClass', 'title', 'titleBold', 'desc', 'textClass', 'headerClass'],
   components: { Banner },
   name: 'HeaderComponents',
-  data () {
+  data() {
     return {
-      scrollPosition: null
+      scrollPosition: null,
+      menuList: [],
+      error: null
+    }
+  },
+  mounted() {
+    this.getMenu()
+  },
+  methods: {
+    async getMenu() {
+      this.menuList = []
+      try {
+        const response = await this.$axios.get('http://localhost:1337/api/menus')
+        this.menuList = response.data.data
+        console.log(this.menuList)
+      } catch (error) {
+        this.error = error
+      }
     }
   }
 }
