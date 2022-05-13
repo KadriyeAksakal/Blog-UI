@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header
-      headerClass="bg-writings"
+      headerClass="banner-bg"
       textClass="title-xl text-left"
       title="Yazılarım"
       desc=""

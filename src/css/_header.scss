@@ -31,119 +31,15 @@ header {
     overflow: hidden;
   }
 
-  &.bg-home {
-    background: #d4c4fb url('../assets/home-banner.jpg') no-repeat center center / cover;
-    overflow: hidden;
-    position: relative;
-
-    &:after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      opacity: 0.87;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      background: #d4c4fb;
-    }
-  }
-
-  &.bg-about {
-    background: #d4c4fb url('../assets/about-banner.jpg') no-repeat center center / cover;
-    overflow: hidden;
-    position: relative;
-
-    &:after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      opacity: 0.65;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      background: #d4c4fb;
-    }
-  }
-
-  &.bg-projects {
-    background: #d4c4fb url('../assets/projects-banner.jpg') no-repeat center center / cover;
-    overflow: hidden;
-    position: relative;
-
-    &:after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      opacity: 0.65;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      background: #d4c4fb;
-    }
-  }
-
-  &.bg-writings {
-    background: #d4c4fb url('../assets/writings-banner.jpg') no-repeat center center / cover;
+  &.banner-bg{
+    background: #d4c4fb;
     overflow: hidden;
     position: relative;
     height: 50vh;
-
-    &:after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      opacity: 0.65;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      background: #d4c4fb;
-    }
-  }
-
-  &.bg-experiences {
-    background: #d4c4fb url('../assets/experiences-banner.jpg') no-repeat center center / cover;
-    overflow: hidden;
-    position: relative;
-    height: 50vh;
-
-    &:after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      opacity: 0.65;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      background: #d4c4fb;
-    }
-  }
-
-  &.bg-contact {
-    background: #d4c4fb url('../assets/contact-banner.jpg') no-repeat center center / cover;
-    overflow: hidden;
-    position: relative;
-    height: 50vh;
-
-    &:after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      opacity: 0.65;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      background: #d4c4fb;
-    }
   }
 
 
-  &.bg-home, &.bg-about, &.bg-projects, &.bg-writings, &.bg-experiences, &.bg-contact{
+  &.banner-bg{
     @media screen and (max-width: 768px) {
       overflow: initial;
       z-index: 99999;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header
-      headerClass="bg-experiences"
+      headerClass="banner-bg"
       textClass="title-xl text-left"
       title="Deneyimlerim"
       desc="Katıldığım eğitim ve programları benim gözümden okuyun.."

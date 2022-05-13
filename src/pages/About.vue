@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header
-      headerClass="bg-about"
+      headerClass="banner-bg"
       textClass="title-xl text-left"
       title="Hakkımda"
       desc="Kısa hayatımın kısa bir özeti.."

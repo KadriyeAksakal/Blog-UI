@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header
-      headerClass="bg-contact"
+      headerClass="banner-bg"
       textClass="title-xl text-left"
       title="İletişim"
       desc="Soru görüş ve önerileriniz için benimle iletişime geçin.."

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header
-      headerClass="bg-home"
+      headerClass="banner-bg"
       textClass="title-xl text-left"
       title="Kadriye Aksakal"
       desc="Front-End Developer"
