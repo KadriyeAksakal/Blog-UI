@@ -48,7 +48,7 @@ export default {
       try {
         const response = await this.$axios.get('http://localhost:1337/api/menus')
         this.menuList = response.data.data
-        console.log(this.menuList)
+        // console.log(this.menuList)
       } catch (error) {
         this.error = error
       }

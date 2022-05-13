@@ -72,7 +72,7 @@ export default {
       try {
         const response = await this.$axios.get('http://localhost:1337/api/contacts')
         this.contactInfo = response.data.data
-        console.log(response.data.data)
+        // console.log(response.data.data)
       } catch (error) {
         this.error = error
       }
