@@ -58,6 +58,14 @@
         box-shadow: 2px 3px 8px 2px rgba(0, 0, 0, 0.16);
       }
 
+      img {
+        width: 120px;
+        display: block;
+        margin: 0 auto;
+        height: 100px;
+      }
+
+
       .icon {
         padding: 0 0 30px 80px;
         display: block;
@@ -79,6 +87,12 @@
         span {
           font-size: 15px;
           color: #808080;
+        }
+
+        a{
+          color: #d4c4fb;
+          text-decoration: none;
+          position: absolute; bottom: 5px; right: 10px;
         }
       }
 
