@@ -41,9 +41,15 @@ quasar build
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
 # TR
 Projede bannerlarda kullandığım medyalar için kaynak ; https://www.pexels.com \
-Medyaların boyutlarını düşürmek için kullandığım kaynak ; https://compressjpeg.com
+Medyaların boyutlarını düşürmek için kullandığım kaynak ; https://compressjpeg.com \
+İconlar için kaynak; https://materialdesignicons.com/ \
+ErrorNotFound sayfasında kullandığım hareketli icon için kaynak ; https://lordicon.com/ \
+Banner ve ErrorNotFound sayfasında kullandığım arkaplan rengi için kaynak ; https://uigradients.com/#KyeMeh
 
 # EN
 The source for the media I used in banners in the project ; https://www.pexels.com \
-The source I use to reduce the size of the media ; https://compressjpeg.com
+The source I use to reduce the size of the media ; https://compressjpeg.com \
+The source for icons ; https://materialdesignicons.com/ \
+Source for the animated icon I used on the ErrorNotFound page ; https://lordicon.com/ \
+Source for the background color I used on Banner and ErrorNotFound page ; https://uigradients.com/#KyeMeh
 # Blog-UI
