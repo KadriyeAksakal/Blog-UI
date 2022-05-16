@@ -1,31 +1,39 @@
 <template>
-  <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
-    <div>
-      <div style="font-size: 30vh">
-        404
+  <div class="error-content text-white q-pa-md">
+    <div class="container">
+      <div class="content">
+        <lord-icon
+          src="https://cdn.lordicon.com/snvfoxut.json"
+          trigger="loop"
+          colors="outline:#121331,primary:#d4c4fb,secondary:#16c72e"
+          style="width:250px;height:250px">
+        </lord-icon>
+        <div class="text">
+          <div style="font-size: 17vh; font-weight: bold">
+            404
+          </div>
+          <div class="text-h2" style="opacity:.3;">
+            Üzgünümm.. Sayfa Bulunamadı :(
+          </div>
+        </div>
       </div>
-
-      <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
+      <div class="btn-container">
+        <q-btn
+          class="btn"
+          color="white"
+          text-color="purple-3"
+          unelevated
+          to="/"
+          label="Ana Sayfaya Dön"
+          no-caps
+        />
       </div>
-
-      <q-btn
-        class="q-mt-xl"
-        color="white"
-        text-color="blue"
-        unelevated
-        to="/"
-        label="Go Home"
-        no-caps
-      />
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
+export default {
   name: 'ErrorNotFound'
-})
+}
 </script>
