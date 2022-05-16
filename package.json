@@ -8,13 +8,16 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "build:css": "postcss ./static/css/main.css -o ./static/css/main-prefixed.css"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "pinia": "^2.0.11",
     "@quasar/extras": "^1.0.0",
+    "autoprefixer": "^10.4.7",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "pinia": "^2.0.11",
+    "postcss": "^8.4.13",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
