@@ -1,0 +1,23 @@
+.writingDetail {
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  .container {
+    width: 80%;
+    position: relative;
+    div {
+      text-align: justify;
+      margin: 0 !important;
+    }
+
+    img {
+      float:left;
+      height: 200px;
+      @media screen and (max-width: 980px) {
+        height: 150px;
+      }
+    }
+
+  }
+}
