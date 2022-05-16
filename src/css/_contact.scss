@@ -45,6 +45,24 @@
       padding: 30px 20px;
       margin-bottom: -50px;
     }
+
+    h5 {
+      font-weight: bold;
+    }
+    .moreBtn {
+      float: right;
+      right: 10px;
+      height: 30px;
+      background-color: #d4c4fb;
+      color: #FFF;
+      text-decoration: none;
+      margin-top: -50px;
+      padding: 10px 20px 30px 20px;
+      @media screen and (max-width: 980px) {
+        padding: 10px 50px 30px 50px;
+        margin-top: -80px;
+      }
+    }
     &-card {
       background: #FFF;
       border-radius: 6px;
@@ -80,19 +98,19 @@
           font-weight: bold;
           font-size: 18px;
           display: block;
-          margin-top: 15px;
+          margin-top: 10px;
           padding-bottom: 10px;
         }
 
         span {
-          font-size: 15px;
+          font-size: 13px;
           color: #808080;
         }
 
         a{
           color: #d4c4fb;
           text-decoration: none;
-          position: absolute; bottom: 5px; right: 10px;
+          position: absolute; bottom: 5px; right: 15px;
         }
       }
 
