@@ -32,7 +32,7 @@ header {
   }
 
   &.banner-bg{
-    background: #d4c4fb;
+    background: linear-gradient(to right, #8360c3, #2ebf91);
     overflow: hidden;
     position: relative;
     height: 50vh;
@@ -97,8 +97,8 @@ header {
           }
 
           a {
-            // color: #dbdbdb;
-            color: #000000;
+            color: #dbdbdb;
+            // color: #000000;
             cursor: pointer;
             text-decoration: none;
 
@@ -126,7 +126,7 @@ header {
           height: 3px;
           // margin: 3px 0px;
           margin-top: 3px;
-          margin-left: -70px;
+          // margin-left: -10px;
           border-radius: 3px;
           background: #FFF;
           position: relative;
@@ -250,7 +250,7 @@ header {
 
     .text {
       margin-top: 0px;
-      color: #000;
+      color: #dbdbdb;
       font-size: 35px;
       text-align: right;
       display: flex;

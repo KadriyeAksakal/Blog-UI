@@ -41,6 +41,7 @@ export default {
   },
   mounted() {
     this.getMenu()
+    window.addEventListener('scroll', this.updateScroll)
   },
   methods: {
     async getMenu() {
@@ -52,6 +53,10 @@ export default {
       } catch (error) {
         this.error = error
       }
+    },
+    updateScroll () {
+      this.scrollPosition = window.scrollY
+      // console.log(this.scrollPosition)
     }
   }
 }
@@ -59,7 +64,7 @@ export default {
 
 <style scoped>
 .change_color {
-  padding: 20px 0px 20px 0px;
-  background-color: #071031;
+  padding: 10px 0px 10px 350px;
+  background-color: #8360c3;
 }
 </style>
