@@ -12,9 +12,9 @@
 const ESLintPlugin = require('eslint-webpack-plugin')
 
 
-const { configure } = require('quasar/wrappers');
+/*const { configure } = require('quasar/wrappers');*/
 
-module.exports = configure(function (ctx) {
+module.exports = function (ctx) {
   return {
     // https://v2.quasar.dev/quasar-cli-webpack/supporting-ts
     supportTS: false,
@@ -26,13 +26,12 @@ module.exports = configure(function (ctx) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
     boot: [
-
       'axios',
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
     css: [
-      'app.scss'
+      'app.sass'
     ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
@@ -73,6 +72,73 @@ module.exports = configure(function (ctx) {
       // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
 
+      extendWebpack (cfg, { isServer, isClient }) {
+        /* Orjinal Optimization Cfg >>> quasar inspect -p optimization
+            {
+              splitChunks: {
+                cacheGroups: {
+                  vendors: {
+                    name: 'vendor',
+                    chunks: 'all',
+                    priority: -10,
+                    test: [Function] {
+                      [length]: 1,
+                      [name]: ''
+                    }
+                  },
+                  common: {
+                    name: 'chunk-common',
+                    minChunks: 2,
+                    priority: -20,
+                    chunks: 'all',
+                    reuseExistingChunk: true
+                  }
+                }
+              },
+              noEmitOnErrors: true,
+              namedModules: true
+            }
+        */
+        // kaynak : https://medium.com/hackernoon/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
+        /*
+        cfg['output'] = {
+          filename: '[name].[contenthash:8].js'
+        }
+        */
+        if (!ctx.dev) {
+          cfg.optimization = {
+            runtimeChunk: 'single',
+            // noEmitOnErrors: true,
+            // namedModules: true,
+            splitChunks: {
+              chunks: 'all',
+              maxInitialRequests: Infinity,
+              minSize: 0,
+              cacheGroups: {
+                vendor: {
+                  test: /[\\/]node_modules[\\/]/,
+                  name (module) {
+                    // get the name. E.g. node_modules/packageName/not/this/part.js
+                    // or node_modules/packageName
+                    const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+
+                    // npm package names are URL-safe, but some servers don't like @ symbols
+                    // return `npm.${packageName.replace('@', '')}`
+                    return packageName
+                  }
+                },
+                // common: {
+                //   name: 'chunk-common',
+                //   minChunks: 2,
+                //   priority: -20,
+                //   chunks: 'all',
+                //   reuseExistingChunk: true
+                // }
+              }
+            }
+          }
+        }
+      },
       chainWebpack (chain) {
         chain.plugin('eslint-webpack-plugin')
           .use(ESLintPlugin, [{ extensions: [ 'js', 'vue' ] }])
@@ -82,9 +148,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
     devServer: {
-      server: {
-        type: 'http'
-      },
+      https: false,
       port: 8080,
       open: true // opens browser window automatically
     },
@@ -93,8 +157,8 @@ module.exports = configure(function (ctx) {
     framework: {
       config: {},
 
-      // iconSet: 'material-icons', // Quasar icon set
-      // lang: 'en-US', // Quasar language pack
+      iconSet: 'material-icons', // Quasar icon set
+      lang: 'tr', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),
@@ -102,9 +166,14 @@ module.exports = configure(function (ctx) {
       //
       // components: [],
       // directives: [],
-
+      importStrategy: 'auto',
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Dialog',
+        'Loading',
+        'Notify',
+        'LocalStorage'
+      ]
     },
 
     // animations: 'all', // --- includes all animations
@@ -114,43 +183,12 @@ module.exports = configure(function (ctx) {
     // https://v2.quasar.dev/quasar-cli-webpack/developing-ssr/configuring-ssr
     ssr: {
       pwa: false,
-
-      // manualStoreHydration: true,
-      // manualPostHydrationTrigger: true,
-
-      prodPort: 3000, // The default port that the production server should use
-                      // (gets superseded if process.env.PORT is specified at runtime)
-
-      maxAge: 1000 * 60 * 60 * 24 * 30,
-        // Tell browser when a file from the server should expire from cache (in ms)
-
-
-      chainWebpackWebserver (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js' ] }])
-      },
-
-
-      middlewares: [
-        ctx.prod ? 'compression' : '',
-        'render' // keep this as last one
-      ]
     },
 
     // https://v2.quasar.dev/quasar-cli-webpack/developing-pwa/configuring-pwa
     pwa: {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
-
-      // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
-      // if using workbox in InjectManifest mode
-
-      chainWebpackCustomSW (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js' ] }])
-      },
-
-
       manifest: {
         name: `BlogApp`,
         short_name: `BlogApp`,
@@ -221,10 +259,12 @@ module.exports = configure(function (ctx) {
 
         appId: 'blog'
       },
+      // More information: https://v1.quasar.dev/quasar-cli/developing-electron-apps/node-integration
+      nodeIntegration: true,
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
 
-      chainWebpackMain (chain) {
+     /* chainWebpackMain (chain) {
         chain.plugin('eslint-webpack-plugin')
           .use(ESLintPlugin, [{ extensions: [ 'js' ] }])
       },
@@ -234,8 +274,13 @@ module.exports = configure(function (ctx) {
       chainWebpackPreload (chain) {
         chain.plugin('eslint-webpack-plugin')
           .use(ESLintPlugin, [{ extensions: [ 'js' ] }])
-      },
+      },*/
+
+      extendWebpack (/* cfg */) {
+        // do something with Electron main process Webpack cfg
+        // chainWebpack also available besides this extendWebpack
+      }
 
     }
   }
-});
+};
