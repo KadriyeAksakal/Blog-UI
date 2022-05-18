@@ -53,3 +53,7 @@ The source for icons ; https://materialdesignicons.com/ \
 Source for the animated icon I used on the ErrorNotFound page ; https://lordicon.com/ \
 Source for the background color I used on Banner and ErrorNotFound page ; https://uigradients.com/#KyeMeh
 # Blog-UI
+
+
+https://user-images.githubusercontent.com/30074473/169165544-4c1f439f-8fa0-474f-913f-35e6400fff8f.mov
+
