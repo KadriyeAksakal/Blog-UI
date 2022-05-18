@@ -1,10 +1,10 @@
 <template>
-  <div v-for="writing in writingInfo" :key="writing.id">
+  <div>
     <Header
       headerClass="banner-bg"
       textClass="title-xl text-left"
-      :title="writing.attributes.bannerTitle"
-      :desc="writing.attributes.bannerDesc"
+      :title="writingInfo.bannerTitle"
+      :desc="writingInfo.bannerDesc"
       img-class="img-left"
     />
     <section class="contact-content detail">
@@ -35,11 +35,11 @@ export default {
   name: 'PageWritings',
   components: { Header },
   meta: {
-    title: 'Kadriye Aksakal Blog',
+    title: 'Kadriye Aksakal Yazıları',
     meta: {
       myKey: {
         name: 'description',
-        content: 'Kadriye Aksakal blog sayfası.'
+        content: 'Kadriye Aksakal bilgi ve deneyimlerimden yola çıkarak yazdığım yazılar.'
       },
       viewport: {
         name: 'viewport',
@@ -73,7 +73,7 @@ export default {
       this.writingInfo = []
       try {
         const response = await this.$axios.get('http://localhost:1337/api/writings?populate[writingContent][populate]=*')
-        this.writingInfo = response.data.data
+        this.writingInfo = response.data.data[0].attributes
         //console.log('sss', this.writingInfo)
       } catch (error) {
         this.error = error

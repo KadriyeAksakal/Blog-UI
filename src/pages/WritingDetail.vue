@@ -3,13 +3,13 @@
     <Header
       headerClass="banner-bg"
       textClass="title-xl text-left"
-      :title="title"
+      :title="writing.title"
       desc=""
     />
     <section class="writingDetail">
       <div class="container">
-        <div><img :src="`http://localhost:1337${imageUrl}`" :alt="mediaAltText"/></div>
-        <div> {{letter}} </div>
+        <div><img :src="`http://localhost:1337${imageUrl}`" :alt="writing.mediaAltText"/></div>
+        <div> {{writing.letter}} </div>
       </div>
     </section>
   </div>
@@ -37,11 +37,8 @@ export default {
   },
   data() {
     return {
-      writing: [],
-      title: '',
-      letter: '',
+      writing: {},
       imageUrl: '',
-      mediaAltText: '',
       error: null
     }
   },
@@ -51,15 +48,12 @@ export default {
   },
   methods: {
     async getWriting() {
-      this.writing = []
+      this.writing = {}
       try {
         const response = await this.$axios.get('http://localhost:1337/api/writing-contents/' + this.$route.params.id + '?populate=*')
-        this.writing = response.data.data
-        this.title = this.writing.attributes.title
-        this.letter = this.writing.attributes.letter
-        this.imageUrl = this.writing.attributes.media.data.attributes.url
-        this.mediaAltText = this.writing.attributes.mediaAltText
-        console.log('sss', this.writing)
+        this.writing = response.data.data.attributes
+        this.imageUrl = this.writing.media.data.attributes.url
+        // console.log('sss', this.writing)
       } catch (error) {
         this.error = error
       }

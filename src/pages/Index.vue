@@ -14,7 +14,6 @@
           <div class="col-sm-3" v-for="(content, index) in experienceList" :key="'content.id'+ index" v-show="index <= 3">
             <div class="contact-content  detail-card">
               <img :src="`http://localhost:1337${content.attributes.media.data[0].attributes.url}`" :alt="content.attributes.mediaAltText"/>
-              {{content.attributes.media.data.attributes}}
               <div class="info">
                 <label>{{content.attributes.companyName}}</label>
                 <p>{{content.attributes.position}}</p>

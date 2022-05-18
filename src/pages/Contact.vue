@@ -1,17 +1,17 @@
 <template>
-  <div v-for="contact in contactInfo" :key="contact.id">
+  <div>
     <Header
       headerClass="banner-bg"
       textClass="title-xl text-left"
-      :title="contact.attributes.bannerTitle"
-      :desc="contact.attributes.bannerDesc"
+      :title="contactInfo.bannerTitle"
+      :desc="contactInfo.bannerDesc"
       img-class="img-left"
     />
       <section class="contact-content detail">
         <div class="container">
-          <h3 class="general--title small row justify-center">{{contact.attributes.contentTitle}}</h3>
+          <h3 class="general--title small row justify-center">{{contactInfo.contentTitle}}</h3>
           <div class="row q-col-gutter-lg justify-center">
-            <div class="col-sm-3" v-for="content in contact.attributes.content" :key="content.id">
+            <div class="col-sm-3" v-for="content in contactInfo.content" :key="content.id">
               <div class="contact-content  detail-card">
                 <q-icon size="70px" font-size="70px" :name="content.iconName" class="icon"/>
                 <div class="info">
@@ -59,7 +59,7 @@ export default {
       this.contactInfo = []
       try {
         const response = await this.$axios.get('http://localhost:1337/api/contacts?populate=*')
-        this.contactInfo = response.data.data
+        this.contactInfo = response.data.data[0].attributes
         // console.log(response.data.data)
       } catch (error) {
         this.error = error

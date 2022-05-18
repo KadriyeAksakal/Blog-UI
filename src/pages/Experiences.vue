@@ -1,10 +1,10 @@
 <template>
-  <div v-for="experience in experienceInfo" :key="experience.id">
+  <div>
     <Header
       headerClass="banner-bg"
       textClass="title-xl text-left"
-      :title="experience.attributes.bannerTitle"
-      :desc="experience.attributes.bannerDesc"
+      :title="experienceInfo.bannerTitle"
+      :desc="experienceInfo.bannerDesc"
       img-class="img-left"
     />
     <section class="contact-content detail">
@@ -13,7 +13,6 @@
           <div class="col-sm-3" v-for="content in experienceList" :key="content.id">
             <div class="contact-content  detail-card">
               <img :src="`http://localhost:1337${content.attributes.media.data[0].attributes.url}`" :alt="content.attributes.mediaAltText"/>
-              {{content.attributes.media.data.attributes}}
               <div class="info">
                 <label>{{content.attributes.companyName}}</label>
                 <p>{{content.attributes.position}}</p>
@@ -41,7 +40,7 @@ export default {
     meta: {
       myKey: {
         name: 'description',
-        content: 'Kadriye Aksakal blog sayfası.'
+        content: 'Kadriye Aksakal deneyimleri.'
       },
       viewport: {
         name: 'viewport',
@@ -51,7 +50,7 @@ export default {
   },
   data() {
     return {
-      experienceInfo: [],
+      experienceInfo: {},
       experienceList: [],
       error: null
     }
@@ -66,17 +65,17 @@ export default {
       try {
         const response = await this.$axios.get('http://localhost:1337/api/experience-contents?populate=*')
         this.experienceList = response.data.data
-        console.log('sss', this.experienceList)
+        // console.log('sss', this.experienceList)
       } catch (error) {
         this.error = error
       }
     },
     async getExperienceInfo() {
-      this.experienceInfo = []
+      this.experienceInfo = {}
       try {
         const response = await this.$axios.get('http://localhost:1337/api/experiences')
-        this.experienceInfo = response.data.data
-        //console.log('sss', this.experienceInfo)
+        this.experienceInfo = response.data.data[0].attributes
+        // console.log('sss', this.experienceInfo)
       } catch (error) {
         this.error = error
       }

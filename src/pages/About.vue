@@ -1,18 +1,18 @@
 <template>
-  <div v-for="about in aboutList" :key="about.id">
+  <div>
     <Header
       headerClass="banner-bg"
       textClass="title-xl text-left"
-      :title="about.attributes.bannerTitle"
-      :desc="about.attributes.bannerDesc"
+      :title="aboutList.bannerTitle"
+      :desc="aboutList.bannerDesc"
       img-class="img-left"
     />
       <section class="about">
         <div class="container">
           <div>
-            <h5>{{ about.attributes.title }}</h5>
+            <h5>{{ aboutList.title }}</h5>
             <div>
-              {{ about.attributes.aboutMe}}
+              {{ aboutList.aboutMe}}
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      aboutList: [],
+      aboutList: {},
       error: null
     }
   },
@@ -50,10 +50,10 @@ export default {
   },
   methods: {
     async getAbout() {
-      this.aboutList = []
+      this.aboutList = {}
       try {
         const response = await this.$axios.get('http://localhost:1337/api/abouts')
-        this.aboutList = response.data.data
+        this.aboutList = response.data.data[0].attributes
         // console.log(this.aboutList)
       } catch (error) {
         this.error = error
