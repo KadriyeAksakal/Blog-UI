@@ -49,14 +49,14 @@
     h5 {
       font-weight: bold;
     }
-    .moreBtn {
+    .more-btn {
       float: right;
       right: 10px;
       height: 30px;
       background-color: #d4c4fb;
       color: #FFF;
       text-decoration: none;
-      margin-top: -50px;
+      // margin-top: -50px;
       padding: 10px 20px 30px 20px;
       @media screen and (max-width: 980px) {
         padding: 10px 50px 30px 50px;
@@ -89,7 +89,7 @@
         display: block;
         color: #d4c4fb;
         @media screen and (min-height: 1000px){
-          padding: 0 0 30px 30px;
+          // padding: 0 0 30px 30px;
         }
       }
 
@@ -120,9 +120,9 @@
         width: 250px;
       }
       @media screen and (min-height: 1000px){
-        padding: 10px;
-        height: 360px;
-        width: 165px;
+        // padding: 10px;
+        // height: 360px;
+        // width: 165px;
       }
     }
 

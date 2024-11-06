@@ -6,7 +6,7 @@
       :title="writing.title"
       desc=""
     />
-    <section class="writingDetail">
+    <section class="writing-detail">
       <div class="container">
         <div><img :src="`http://localhost:1337${imageUrl}`" :alt="writing.mediaAltText"/></div>
         <div> {{writing.letter}} </div>

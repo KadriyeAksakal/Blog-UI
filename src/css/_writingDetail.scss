@@ -1,4 +1,4 @@
-.writingDetail {
+.writing-detail {
   justify-content: center;
   align-items: center;
   padding-top: 100px;
@@ -13,10 +13,7 @@
 
     img {
       float:left;
-      height: 200px;
-      @media screen and (max-width: 980px) {
-        height: 150px;
-      }
+      max-height: 150px;
     }
 
   }

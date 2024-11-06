@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-        <router-link to="/experiences" class="moreBtn">Daha Fazlası</router-link>
+        <router-link to="/experiences" class="more-btn">Daha Fazlası</router-link>
       </div>
     </section>
 
@@ -43,7 +43,7 @@
             </div>
           </div>
         </div>
-        <router-link to="/writings" class="moreBtn">Daha Fazlası</router-link>
+        <router-link to="/writings" class="more-btn">Daha Fazlası</router-link>
       </div>
     </section>
   </div>
